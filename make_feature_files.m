@@ -16,7 +16,7 @@ end
 % initialization
 ct_files = 0 ; % counter to keep track of files analyzed
 ct=1; % counter for number of syllables
-fn = notmats(1,:);
+fn = strtrim(notmats(1,:));
 d_num=fn2datenum(fn); % get date from filename
 dstr = datestr(d_num,'yyddmm');
 underscore_ids = strfind(fn,'_');
@@ -26,7 +26,7 @@ fid_syls = fopen(syls_save_fname,'w');
 fprintf(fid_syls,'dir: %s\n',pwd);
 
 for i=1:num_files_to_use
-    fn=notmats(i,:);
+    fn=strtrim(notmats(i,:));
     cbin_fn=fn(1:end-8);
 
     load(fn);
@@ -36,7 +36,7 @@ for i=1:num_files_to_use
     num_syls = numel(labels);
     fprintf(fid_syls,'%s\n',num2str(num_syls));
     
-    [rawsong, Fs] = evsoundin('.', cbin_fn,'obs0');
+    [rawsong, Fs] = evsoundin('', cbin_fn,'obs0');
 
     %%% go through syllable by syllable and quantify different parameters %%%
     t = (1:length(rawsong)) / Fs;
