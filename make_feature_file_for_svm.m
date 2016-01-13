@@ -68,8 +68,8 @@ end
 features_mat = cell2mat(features_mat'); % <--Hence the transpose
 
 d_num=fn2datenum(cbin_fn); % get date from filename
-dstr = datestr(d_num,'yyyyhhmm');
+dstr = datestr(d_num,'mm-dd-yy');
 underscore_ids = strfind(cbin_fn,'_');
 bird_name = cbin_fn(1:(underscore_ids(1)-1));
-save_fname = [bird_name '_feature_file_from_' dstr '_generated_' datestr(now,'dd-mm-yyyy_HH-MM')];
+save_fname = [bird_name '_feature_file_from_' dstr '_generated_' datestr(now,'mm-dd-yy_HH-MM')];
 save(save_fname,'features_mat','label_vec','song_IDs_vec')
